@@ -15,8 +15,8 @@
 </head>
 <body>
 <div id="app">
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
+    <nav class="navbar navbar-default navbar-static-top text-center">
+        <div class="container text-center">
             <div class="navbar-header">
 
                 <!-- Collapsed Hamburger -->
@@ -27,45 +27,38 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-
-                <!-- Branding Image -->
-                <a class="navbar-brand text-center" href="{{ url('#') }}">
+                <ul class="nav navbar-nav text-center">
+                    <a class="navbar-brand" href="{{ url('#') }}">
                         {{ config('app.name')}}
-                </a>
+                    </a>
+                    <!-- Authentication Links -->
+                    @if (!session('user'))
+                        <a href="{{ route('admin') }}" class="navbar-brand">管理员入口</a>
+                    @else
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false" aria-haspopup="true" v-pre>
+                                {{ session('user') }} <span class="caret"></span>
+                            </a>
 
-                {{--<div class="collapse navbar-collapse" id="app-navbar-collapse">--}}
-                    {{--<!-- Left Side Of Navbar -->--}}
-                    {{----}}
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav ">
-                        <!-- Authentication Links -->
-                        @if (!session('user'))
-                            <li><a href="{{ route('admin') }}" class="text-center">管理员入口</a></li>
-                        @else
-                            <li class="dropdown pull-right">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                   aria-expanded="false" aria-haspopup="true" v-pre>
-                                    {{ session('user') }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu pull-right">
-                                    <li class=""><a href="{{ url('/') }}">个人信息</a></li>
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                           onclick="event.preventDefault();
+                            <ul class="dropdown-menu">
+                                <li class=""><a href="{{ url('/') }}">个人信息</a></li>
+                                <li>
+                                    <a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            退出
-                                        </a>
+                                        退出
+                                    </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                              style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
-                    </ul>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                          style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    @endif
+                </ul>
                 {{--</div>--}}
             </div>
 

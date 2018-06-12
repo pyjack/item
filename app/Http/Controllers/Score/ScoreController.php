@@ -71,7 +71,24 @@ class ScoreController extends Controller
     public function update(Request $request, Score $score)
     {
         //
-        $score->score = $request->sore;
+        $user_id = [
+            $request->user_id,
+            $request->user_id,
+            $request->user_id,
+            $request->user_id,
+            $request->user_id,
+            $request->user_id,
+            $request->user_id,
+            $request->user_id,
+        ];
+//        $data = $request->except(['_token','user_id']);
+        $score->user_id = $user_id;
+//        $score->question_id = array_keys($data);
+//        $score->scores = array_values($data);
+//        dd($score);
+//        $score->update();
+                dd($score->update());
+
     }
 
     /**

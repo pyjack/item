@@ -1,66 +1,41 @@
 @extends('layouts.auth.user')
 
 @section('content')
-    <section class="content-wrap">
-        <div class="container">
-            <div class="row">
-                <main class="col-md-12 main-content">
-                    <div class="post-head text-center">
-                        <h1 class="post-title">{{ $category }}</h1>
-                    </div>
-                    <form class="form form-horizontal form-group " method="post" action="{{route('trunk')}}">
-                        @foreach($questions as $value)
-                            <article class="post form-horizontal table-bordered">
-
+    <div class="container">
+        <div class="row" id="login">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center"><h1>{{ $category }}</h1></div>
+                    <div class="panel-body">
+                        <form id="question_form" class="form-horizontal" method="POST" action="{{ route('trunk') }}">
+                            {{ csrf_field() }}
+                            @foreach($questions as $value)
                                 <div class="post-content">
-                                    <h2>{{$value->id}} {{ $value->questions }}
+                                    <h2>
+                                        {{$value->id}} . {{ $value->questions }}
                                         <label class="pull-right">
-                                            <input  class="" type="radio" name="{{$value->id}}" value="1"> 是
-                                        </label>
-                                       <button></button>
-                                        <label class="pull-right">
-                                            <input  class="" type="radio" name="{{$value->id}}" value="0"> 否
+                                            <input type="radio" class="radio-inline" name="{{ $value->id }}" value="1"
+                                                   required> 是
+                                            <input type="radio" class="radio-inline" name="{{ $value->id }}" value="0"
+                                                   required> 否
+                                            <input type="hidden" name="user_id" value="{{session('user_id')}}">
                                         </label>
                                     </h2>
                                 </div>
-                            </article>
-
-                        @endforeach
-                    </form>
-                    <div class="">{{ $questions->links() }}</div>
-                </main>
-                {{--<aside class="col-md-4 sidebar">--}}
-                {{--<div class="widget"><h4 class="title">社区</h4>--}}
-                {{--<div class="content community"><p>QQ群：462694081</p>--}}
-                {{--<p><a href="http://wenda.golaravel.com/" title="Laravel中文网问答社区" target="_blank"--}}
-                {{--onclick="_hmt.push(['_trackEvent', 'big-button', 'click', '问答社区'])"><i--}}
-                {{--class="fa fa-comments"></i> 问答社区</a></p></div>--}}
-                {{--</div>--}}
-                {{--<div class="widget"><h4 class="title">下载</h4>--}}
-                {{--<div class="content download"><a href="/download/" class="btn btn-default btn-block"--}}
-                {{--onclick="_hmt.push(['_trackEvent', 'big-button', 'click', '下载 Laravel &amp; Lumen'])">Laravel--}}
-                {{--&amp; Lumen 一键安装包下载</a></div>--}}
-                {{--</div>--}}
-                {{--<div class="widget"><h4 class="title">文档</h4><a href="https://docs.golaravel.com/docs/5.6/"--}}
-                {{--class="btn btn-default btn-block" target="_blank">5.6--}}
-                {{--文档</a> <a href="https://docs.golaravel.com/docs/5.5/" class="btn btn-default btn-block"--}}
-                {{--target="_blank">5.5 文档</a> <a href="https://docs.golaravel.com/docs/5.4/"--}}
-                {{--class="btn btn-default btn-block" target="_blank">5.4--}}
-                {{--文档</a> <a href="https://docs.golaravel.com/docs/5.3/" class="btn btn-default btn-block"--}}
-                {{--target="_blank">5.3 文档</a> <a href="https://docs.golaravel.com/docs/5.2/"--}}
-                {{--class="btn btn-default btn-block" target="_blank">5.2--}}
-                {{--文档</a> <a href="https://docs.golaravel.com/docs/5.1/" class="btn btn-default btn-block"--}}
-                {{--target="_blank">5.1 文档</a> <a href="https://docs.golaravel.com/docs/5.0/"--}}
-                {{--class="btn btn-default btn-block" target="_blank">5.0--}}
-                {{--文档</a> <a href="https://docs.golaravel.com/docs/4.2/" class="btn btn-default btn-block"--}}
-                {{--target="_blank">4.2 中文文档</a> <a href="https://docs.golaravel.com/docs/4.1/"--}}
-                {{--class="btn btn-default btn-block" target="_blank">4.1--}}
-                {{--中文文档</a> <a href="https://docs.golaravel.com/docs/4.0/" class="btn btn-default btn-block"--}}
-                {{--target="_blank">4.0 中文文档</a> <a href="https://lumen.golaravel.com/docs/"--}}
-                {{--class="btn btn-default btn-block"--}}
-                {{--target="_blank">Lumen 中文文档</a></div>--}}
-                {{--</aside>--}}
+                            @endforeach
+                            <div class="form-group text-center">
+                                <ul class="pagination">
+                                    <li class="pull-left {{ $questions->currentPage() == 1 ? 'disabled' : ''}} "><a href="{{ $questions->currentPage() == 1 ? 'javascript:void(0);' : $questions->previousPageUrl()}}"><span> << </span></a></li>
+                                    <li><button class="btn btn-default"><span>&nbsp;</span>翻页</button></li>
+                                    <li class="pull-right {{ $questions->currentPage() == $questions->lastPage() ? 'disabled' : ''}}"><a href="{{ $questions->currentPage() == $questions->lastPage() ? 'javascript:void(0);' : $questions->nextPageUrl()}}"
+                                                                                                                                         onclick="event.preventDefault();
+                                                     document.getElementById('question_form').submit();"><span> >> </span></a></li>
+                                </ul>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 @endsection

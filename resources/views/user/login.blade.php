@@ -5,8 +5,7 @@
         <div class="row" id="login">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">用户登陆界面</div>
-
+                    <div class="panel-heading text-center">用户登陆界面</div>
                     <div class="panel-body">
                         <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                             {{ csrf_field() }}
@@ -47,9 +46,9 @@
                                 <div class="col-md-6">
                                     <select id="gender" type="" class="form-control" name="gender"
                                             value="{{ old('gender') }}" required autofocus>
-                                        <option >请选择</option>
-                                        <option value="0">  男</option>
-                                        <option value="1">  女</option>
+                                        <option>请选择</option>
+                                        <option value="0"> 男</option>
+                                        <option value="1"> 女</option>
                                     </select>
                                     @if ($errors->has('gender'))
                                         <span class="help-block">

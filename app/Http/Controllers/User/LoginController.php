@@ -61,7 +61,6 @@ class LoginController extends Controller
         $user->age = $request->age;
         $user->birth = $request->birth;
         $user->id_card = $request->id_card;
-//        dd($user);
         $user->save();
 
         $request->session()->put('user', $request->username);

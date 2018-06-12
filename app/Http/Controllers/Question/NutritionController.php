@@ -53,7 +53,7 @@ class NutritionController extends Controller
         //判断session里面是否有值(用户是否登陆)
         if ($request->session()->has('user')) {
 
-            $nutrition = Nutrition::paginate(3);
+            $nutrition = Nutrition::paginate(8);
             return view('questions.nutrition')
                 ->with('questions', $nutrition)
                 ->with('category', '营养问题');

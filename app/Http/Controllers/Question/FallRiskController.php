@@ -48,11 +48,15 @@ class FallRiskController extends Controller
      * @param  \App\Model\FallRisk $fallRisk
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(Request $request, FallRisk $fallRisk)
     {
-        //
-        $fallRisk = new FallRisk;
-        return $fallRisk->pluck('questions','id');
+        if ($request->session()->has('user')) {
+
+            return view('questions.nutrition')
+                ->with('questions', $fallRisk->all())
+                ->with('category', '跌倒风险问题');
+        }
+        return redirect()->route('login');
     }
 
     /**

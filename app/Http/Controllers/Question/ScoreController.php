@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Score;
+namespace App\Http\Controllers\Question;
 
+use App\Http\Controllers\Controller;
 use App\Model\Score;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class ScoreController extends Controller
 {
@@ -31,18 +31,29 @@ class ScoreController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Score $score)
     {
         //
+        $data = $request->all();
+        unset($data['_token']);
+        $data = array_chunk($data, 3);
+//        dd($data);
+        foreach ($data as $value) {
+            $score->insert([
+                'scores' => $value[0],
+                'user_id' => $value[1],
+                'nutrition_id' => $value[2],
+            ]);
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Model\Score  $score
+     * @param  \App\Model\Score $score
      * @return \Illuminate\Http\Response
      */
     public function show(Score $score)
@@ -53,7 +64,7 @@ class ScoreController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\Score  $score
+     * @param  \App\Model\Score $score
      * @return \Illuminate\Http\Response
      */
     public function edit(Score $score)
@@ -64,37 +75,19 @@ class ScoreController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\Score  $score
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Model\Score $score
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Score $score)
     {
         //
-        $user_id = [
-            $request->user_id,
-            $request->user_id,
-            $request->user_id,
-            $request->user_id,
-            $request->user_id,
-            $request->user_id,
-            $request->user_id,
-            $request->user_id,
-        ];
-//        $data = $request->except(['_token','user_id']);
-        $score->user_id = $user_id;
-//        $score->question_id = array_keys($data);
-//        $score->scores = array_values($data);
-//        dd($score);
-//        $score->update();
-                dd($score->update());
-
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\Score  $score
+     * @param  \App\Model\Score $score
      * @return \Illuminate\Http\Response
      */
     public function destroy(Score $score)

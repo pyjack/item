@@ -37,6 +37,7 @@ class CognitiveAbilityController extends Controller
     public function store(Request $request)
     {
         //
+
         $questions = new CognitiveAbility;
         $questions->question = $request->question;
         dd($questions->save());
@@ -48,11 +49,16 @@ class CognitiveAbilityController extends Controller
      * @param  \App\Model\CognitiveAbility  $cognitiveAbility
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(Request $request, CognitiveAbility $cognitiveAbility)
     {
         //
-        $cognitiveAbility = new CognitiveAbility;
-        return $cognitiveAbility->pluck('questions','id');
+        if ($request->session()->has('user')) {
+
+            return view('questions.cognitive')
+                ->with('questions', $cognitiveAbility->all())
+                ->with('category', '跌倒风险问题');
+        }
+        return redirect()->route('login');
     }
 
     /**

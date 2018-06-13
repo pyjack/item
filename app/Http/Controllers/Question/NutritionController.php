@@ -48,14 +48,13 @@ class NutritionController extends Controller
      * @param  \App\Model\Nutrition $nutrition
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show(Request $request, Nutrition $nutrition)
     {
         //判断session里面是否有值(用户是否登陆)
         if ($request->session()->has('user')) {
 
-            $nutrition = Nutrition::paginate(8);
             return view('questions.nutrition')
-                ->with('questions', $nutrition)
+                ->with('questions', $nutrition->all())
                 ->with('category', '营养问题');
         }
         return redirect()->route('login');

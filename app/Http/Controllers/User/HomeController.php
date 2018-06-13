@@ -3,6 +3,12 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Model\CognitiveAbility;
+use App\Model\FallRisk;
+use App\Model\Nutrition;
+use App\Model\PsychoSpirit;
+use App\Model\TorsoFunction;
+use App\Model\TrunkDisease;
 use App\Model\User;
 use Illuminate\Http\Request;
 
@@ -14,12 +20,31 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(
+        Request $request,
+        TrunkDisease $trunkDisease,
+        TorsoFunction $torsoFunction,
+        CognitiveAbility $cognitiveAbility,
+        PsychoSpirit $psychoSpirit,
+        FallRisk $fallRisk,
+        Nutrition $nutrition
+    )
     {
         //判断session里面是否有值(用户是否登陆)
         if ($request->session()->has('user')) {
-
-            return view('questions.home');
+            return view('questions.home')
+                ->with('trunkDisease',$trunkDisease)
+                ->with('torsoFunction',$torsoFunction)
+                ->with('cognitiveAbility',$cognitiveAbility)
+                ->with('fallRisk',$fallRisk)
+                ->with('nutrition',$nutrition)
+                ->with('psychoSpirit',$psychoSpirit)
+                ->with('trunk','躯干疾病问题')
+                ->with('category','躯干功能问题')
+                ->with('cognitive','认知能力问题')
+                ->with('fall','跌倒风险问题')
+                ->with('nutritions','营养问题')
+                ->with('psycho','心理精神问题');
         }
         return redirect()->route('login');
     }
@@ -51,7 +76,7 @@ class HomeController extends Controller
      * @param  \App\Model\User $user
      * @return \Illuminate\Http\Response
      */
-    public function show( )
+    public function show()
     {
 
     }

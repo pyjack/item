@@ -1,34 +1,46 @@
 @extends('layouts.auth.user')
 
 @section('content')
-    <section class="content-wrap">
-        <div class="container">
-            <div class="row">
-                <main class="col-md-12 main-content">
-                    <div class="post-head text-center">
-                        <h1 class="post-title"></h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                @if (session('user'))
+                    <div class="alert alert-success">
+                        {{ session('user') }}
                     </div>
+                @endif
+            </div>
+        </div>
+        <div class="row" id="login">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center"><h1>{{ $category }}</h1></div>
+                    @foreach($nutrition->all() as $value)
+                    <div class="panel-body">
+                        {{--<form id="question_form" class="form-horizontal" method="POST" action="{{ route('trunk') }}">--}}
+                            {{--{{ csrf_field() }}--}}
 
-                    <article class="post">
+                                {{--{{dd($nutrition)}}--}}
+                                <div class="post-content">
+                                    <h2>
+                                        {{$value->id}}
+                                        {{--<label class="pull-right">--}}
+                                            {{--<input type="radio" class="radio-inline" name="score_{{ $value}}" value="1"--}}
+                                                   {{--required> 是--}}
+                                            {{--<input type="radio" class="radio-inline" name="score_{{ $value}}" value="0"--}}
+                                                   {{--required> 否--}}
+                                            {{--<input type="hidden" name="user_{{session('user_id').'_'.rand(0,9999)}}" value="{{session('user_id')}}">--}}
+                                            {{--<input type="hidden" name="question_{{ $value->id }}" value="{{ $value->id }}">--}}
+                                        {{--</label>--}}
+                                    </h2>
+                                </div>
 
-                        <div class="featured-media"><a href="/post/laravel-5-6-is-now-released/"><img
-                                        src="/assets/images/laravel-5.6.png" alt="Laravel 5.6 版本正式发布"></a></div>
-                        <div class="post-content"><p></p>
-                            <p>Laravel 5.6 是继 5.5 之后 Laravel 官方发布的最新版本。此版本包含众多新特性，接下来我们说一说几个重要的特性。如需查看完成的发布日志，请点击<a
-                                        href="https://github.com/laravel/framework/blob/5.6/CHANGELOG-5.6.md">这里</a>。
-                            </p>
-                            <p></p></div>
-                        <div class="post-permalink">
-                            <a href="" class="btn btn-default">阅读全文</a>
-                        </div>
-                        <footer class="post-footer clearfix"></footer>
-                    </article>
 
-                    <nav class="pagination" role="navigation">
-                        <span class="page-number">第 1 页 / 共 7 页</span>
-                        <a class="older-posts" href="/page/2/">
-                            <i class="fa fa-angle-right"></i>
-                        </a>
-                    </nav>
-                </main>
+                        {{--</form>--}}
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

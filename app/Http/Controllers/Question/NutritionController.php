@@ -55,7 +55,8 @@ class NutritionController extends Controller
 
             return view('questions.nutrition')
                 ->with('questions', $nutrition->all())
-                ->with('category', '营养问题');
+                ->with('category', '营养问题')
+                ->with('table','nutrition');
         }
         return redirect()->route('login');
     }

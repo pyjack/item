@@ -37,18 +37,23 @@ class ScoreController extends Controller
     public function store(Request $request, Score $score)
     {
         //
+        $score_total = 0;
         $data = $request->all();
         unset($data['_token']);
+        unset($data['table']);
         $data = array_chunk($data, 3);
-//        dd($data);
         foreach ($data as $value) {
             $score->insert([
                 'scores' => $value[0],
                 'user_id' => $value[1],
-                'nutrition_id' => $value[2],
+                $request->table.'_id' => $value[2],
             ]);
+            $score_total += $value[0];
         }
-
+//        dd($score_total);
+        $request->session()->put($request->table,$request->table);
+        $request->session()->put($request->table.'_scores',$score_total);
+//        dd($request->table.'_scores');
         return redirect()->route('user');
     }
 

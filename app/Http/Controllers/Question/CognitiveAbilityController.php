@@ -56,7 +56,8 @@ class CognitiveAbilityController extends Controller
 
             return view('questions.cognitive')
                 ->with('questions', $cognitiveAbility->all())
-                ->with('category', '跌倒风险问题');
+                ->with('category', '认知能力问题')
+                ->with('table','cognitive_ability');
         }
         return redirect()->route('login');
     }

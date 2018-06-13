@@ -7,12 +7,12 @@
                 <div class="panel panel-default">
                     <div class="panel-heading text-center"><h1>{{ $category }}</h1></div>
                     <div class="panel-body">
-                        <form id="question_form" class="form-horizontal" method="POST" action="{{ route('cognitive.submit') }}">
+                        <form id="question_form" class="form-horizontal" method="POST" action="{{ route('fall.submit') }}">
                             {{ csrf_field() }}
                             <input type="hidden" name="table" value="{{$table}}">
                             @foreach($questions as $value)
                                 <div class="post-content">
-                                    <h2>
+                                    <h4>
                                         {{$value->id}} . {{ $value->questions }}
                                         <label class="pull-right">
                                             <input type="radio" class="radio-inline" name="score_{{ $value->id }}" value="1"
@@ -22,7 +22,7 @@
                                             <input type="hidden" name="user_{{session('user_id').'_'.rand(0,9999)}}" value="{{session('user_id')}}">
                                             <input type="hidden" name="question_{{ $value->id }}" value="{{ $value->id }}">
                                         </label>
-                                    </h2>
+                                    </h4>
                                 </div>
                             @endforeach
                             <div class="form-group text-center">

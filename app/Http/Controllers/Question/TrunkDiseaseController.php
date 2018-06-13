@@ -48,11 +48,16 @@ class TrunkDiseaseController extends Controller
      * @param  \App\Model\TrunkDisease  $trunkDisease
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(Request $request, TrunkDisease $trunkDisease)
     {
         //
-        $trunkDisease =new TrunkDisease;
-        return $trunkDisease->pluck('questions','id');
+        if ($request->session()->has('user')) {
+
+            return view('questions.trunk')
+                ->with('questions', $trunkDisease->all())
+                ->with('category', '躯干疾病问题');
+        }
+        return redirect()->route('login');
     }
 
     /**

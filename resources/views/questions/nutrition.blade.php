@@ -2,13 +2,14 @@
 
 @section('content')
     <div class="container">
-        <div class="row" id="login">
-            <div class="col-md-8 col-md-offset-2">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
                     <div class="panel-heading text-center"><h1>{{ $category }}</h1></div>
                     <div class="panel-body">
                         <form id="question_form" class="form-horizontal" method="POST" action="{{ route('nutrition.submit') }}">
                             {{ csrf_field() }}
+                            <input type="hidden" name="table" value="{{$table}}">
                             @foreach($questions as $value)
                                 <div class="post-content">
                                     <h2>

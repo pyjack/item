@@ -52,9 +52,10 @@ class FallRiskController extends Controller
     {
         if ($request->session()->has('user')) {
 
-            return view('questions.nutrition')
+            return view('questions.fall')
                 ->with('questions', $fallRisk->all())
-                ->with('category', '跌倒风险问题');
+                ->with('category', '跌倒风险问题')
+                ->with('table', 'fall_risk');
         }
         return redirect()->route('login');
     }

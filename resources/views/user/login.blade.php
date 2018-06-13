@@ -3,17 +3,17 @@
 @section('content')
     <div class="container">
         <div class="row" id="login">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <div class="panel panel-default text-center">
                     <div class="panel-heading text-center">用户登陆界面</div>
-                    <div class="panel-body">
-                        <form class="form-horizontal" method="POST" action="{{ route('login') }}">
+                    <div class="panel-body text-center">
+                        <form class="form-horizontal text-center" method="POST" action="{{ route('login') }}">
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-                                <label for="username" class="col-md-4 control-label">姓名</label>
+                                <label for="username" class="col-md-3 control-label">姓名</label>
 
-                                <div class="col-md-6">
+                                <div class="col-md-7">
                                     <input id="username" type="text" class="form-control" name="username"
                                            value="{{ old('username') }}" required autofocus>
 
@@ -26,9 +26,9 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
-                                <label for="phone" class="col-md-4 control-label">电话</label>
+                                <label for="phone" class="col-md-3 control-label">电话</label>
 
-                                <div class="col-md-6">
+                                <div class="col-md-7">
                                     <input id="phone" type="number" class="form-control" name="phone"
                                            value="{{ old('phone') }}" required autofocus>
 
@@ -41,9 +41,9 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
-                                <label for="gender" class="col-md-4 control-label">性别</label>
+                                <label for="gender" class="col-md-3 control-label">性别</label>
 
-                                <div class="col-md-6">
+                                <div class="col-md-7">
                                     <select id="gender" type="" class="form-control" name="gender"
                                             value="{{ old('gender') }}" required autofocus>
                                         <option>请选择</option>
@@ -59,9 +59,9 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('age') ? ' has-error' : '' }}">
-                                <label for="name" class="col-md-4 control-label">年龄</label>
+                                <label for="name" class="col-md-3 control-label">年龄</label>
 
-                                <div class="col-md-6">
+                                <div class="col-md-7">
                                     <input id="age" type="number" class="form-control" name="age"
                                            value="{{ old('age') }}" min="0" max="150" required autofocus>
 
@@ -74,9 +74,9 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('birth') ? ' has-error' : '' }}">
-                                <label for="birth" class="col-md-4 control-label">出生日期</label>
+                                <label for="birth" class="col-md-3 control-label">出生日期</label>
 
-                                <div class="col-md-6">
+                                <div class="col-md-7">
                                     <input id="birth" type="date" class="form-control" name="birth"
                                            value="{{ old('birth') }}" min="0" required autofocus>
 
@@ -89,9 +89,9 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('id_card') ? ' has-error' : '' }}">
-                                <label for="id_card" class="col-md-4 control-label">身份证号</label>
+                                <label for="id_card" class="col-md-3 control-label">身份证号</label>
 
-                                <div class="col-md-6">
+                                <div class="col-md-7">
                                     <input id="id_card" type="text" class="form-control" name="id_card"
                                            value="{{ old('id_card') }}" placeholder="可不填写">
 
@@ -104,7 +104,7 @@
                             </div>
 
                             <div class="form-group">
-                                <div class="col-md-6 col-md-offset-4">
+                                <div class="col-md-7 col-md-offset-3">
                                     <button type="submit" class="btn btn-primary">
                                         开始答题
                                     </button>

@@ -24,7 +24,7 @@
                     <div class="panel-heading text-center"><h1>{{ $torso }}</h1>
                         @foreach($torsoFunction->all() as $value)
                             <a class="btn btn-default" href="{{route('trunk')}}">
-                                <h4>{{$value->id}}</h4>
+                                {{$value->id}}
                             </a>
                         @endforeach
                     </div>
@@ -40,24 +40,21 @@
                     <div class="panel-heading text-center"><h1>{{ $torso }}</h1></div>
                     @foreach($torsoFunction->all() as $value)
                         <a class="btn btn-default" href="{{route('trunk')}}">
-
-                            <h>{{$value->id}}</h>
+                            {{$value->id}}
                         </a>
                     @endforeach
 
-                    <div class="panel-heading text-center"><h1>{{ $torso }}</h1>
-                        @foreach($torsoFunction->all() as $value)
-                            <a class="btn btn-default" href="{{route('trunk')}}">
-
-                                <h4>{{$value->id}}</h4>
+                    <div class="panel-heading text-center"><h1>{{ $nutritions }}</h1>
+                        @foreach($nutrition->all() as $value)
+                            <a class="btn btn-default" href="{{route('nutrition')}}">
+                                {{$value->id}}
                             </a>
                         @endforeach
                     </div>
-                    <div class="panel-heading text-center"><h1>{{ $torso }}</h1>
+                    <div class="panel-heading text-center"><h1>{{ $psycho }}</h1>
                         @foreach($torsoFunction->all() as $value)
-                            <a class="btn btn-default" href="{{route('trunk')}}">
-
-                                <h4>{{$value->id}}</h4>
+                            <a class="btn btn-default" href="{{route('psycho')}}">
+                                {{$value->id}}
                             </a>
                         @endforeach
                     </div>

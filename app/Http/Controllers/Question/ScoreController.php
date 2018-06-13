@@ -48,6 +48,8 @@ class ScoreController extends Controller
                 'nutrition_id' => $value[2],
             ]);
         }
+
+        return redirect()->route('user');
     }
 
     /**

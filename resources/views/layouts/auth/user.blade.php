@@ -14,10 +14,10 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-<div id="app">
+<div id="app text-center">
     <nav class="navbar navbar-default navbar-static-top text-center">
         <div class="container text-center">
-            <div class="navbar-header">
+            <div class="navbar-header text-center">
 
                 <!-- Collapsed Hamburger -->
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
@@ -28,13 +28,13 @@
                     <span class="icon-bar"></span>
                 </button>
                 <ul class="nav navbar-nav text-center">
-                    <a class="navbar-brand" href="{{ url('#') }}">
+                    <a class="text-center navbar-brand" href="{{ url('#') }}">
                         {{ config('app.name')}}
                     </a>
                     <!-- Authentication Links -->
-                    @if (!session('user'))
-                        <a href="{{ route('admin') }}" class="navbar-brand">管理员入口</a>
-                    @else
+                    @if (session('user'))
+                        {{--<a href="{{ route('admin') }}" class="navbar-brand">管理员入口</a>--}}
+                    {{--@else--}}
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-expanded="false" aria-haspopup="true" v-pre>

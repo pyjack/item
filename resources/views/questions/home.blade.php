@@ -14,30 +14,17 @@
         <div class="row" id="login">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading text-center"><h1>{{ $category }}</h1></div>
+                    <div class="panel-heading text-center"><h1>{{ $trunk }}</h1></div>
                     @foreach($nutrition->all() as $value)
-                    <div class="panel-body">
-                        {{--<form id="question_form" class="form-horizontal" method="POST" action="{{ route('trunk') }}">--}}
-                            {{--{{ csrf_field() }}--}}
-
-                                {{--{{dd($nutrition)}}--}}
-                                <div class="post-content">
-                                    <h2>
-                                        {{$value->id}}
-                                        {{--<label class="pull-right">--}}
-                                            {{--<input type="radio" class="radio-inline" name="score_{{ $value}}" value="1"--}}
-                                                   {{--required> 是--}}
-                                            {{--<input type="radio" class="radio-inline" name="score_{{ $value}}" value="0"--}}
-                                                   {{--required> 否--}}
-                                            {{--<input type="hidden" name="user_{{session('user_id').'_'.rand(0,9999)}}" value="{{session('user_id')}}">--}}
-                                            {{--<input type="hidden" name="question_{{ $value->id }}" value="{{ $value->id }}">--}}
-                                        {{--</label>--}}
-                                    </h2>
-                                </div>
-
-
-                        {{--</form>--}}
-                    </div>
+                        <a class="btn btn-default ">
+                            {{$value->id}}
+                        </a>
+                    @endforeach
+                    <div class="panel-heading text-center"><h1>{{ $torso }}</h1></div>
+                    @foreach($torsoFunction->all() as $value)
+                        <a class="btn btn-default ">
+                            <h>{{$value->id}}</h>
+                        </a>
                     @endforeach
                 </div>
             </div>

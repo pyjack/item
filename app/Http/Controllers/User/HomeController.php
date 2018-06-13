@@ -33,18 +33,18 @@ class HomeController extends Controller
         //判断session里面是否有值(用户是否登陆)
         if ($request->session()->has('user')) {
             return view('questions.home')
-                ->with('trunkDisease',$trunkDisease)
-                ->with('torsoFunction',$torsoFunction)
-                ->with('cognitiveAbility',$cognitiveAbility)
-                ->with('fallRisk',$fallRisk)
-                ->with('nutrition',$nutrition)
-                ->with('psychoSpirit',$psychoSpirit)
-                ->with('trunk','躯干疾病问题')
-                ->with('category','躯干功能问题')
-                ->with('cognitive','认知能力问题')
-                ->with('fall','跌倒风险问题')
-                ->with('nutritions','营养问题')
-                ->with('psycho','心理精神问题');
+                ->with('trunkDisease', $trunkDisease)
+                ->with('torsoFunction', $torsoFunction)
+                ->with('cognitiveAbility', $cognitiveAbility)
+                ->with('fallRisk', $fallRisk)
+                ->with('nutrition', $nutrition)
+                ->with('psychoSpirit', $psychoSpirit)
+                ->with('trunk', '躯干疾病问题')
+                ->with('torso', '躯干功能问题')
+                ->with('cognitive', '认知能力问题')
+                ->with('fall', '跌倒风险问题')
+                ->with('nutritions', '营养问题')
+                ->with('psycho', '心理精神问题');
         }
         return redirect()->route('login');
     }

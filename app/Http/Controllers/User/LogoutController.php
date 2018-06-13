@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
 use App\Model\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class LogoutController extends Controller
 {
@@ -18,7 +18,8 @@ class LogoutController extends Controller
         //判断session里面是否有值(用户是否登陆)
         if ($request->session()->has('user')) {
             //移除session
-            $request->session()->pull('user', session('user'));
+            $request->session()->flush();
+            return redirect()->route('login');
         }
         return redirect()->route('login');
     }
@@ -37,7 +38,7 @@ class LogoutController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -48,7 +49,7 @@ class LogoutController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Model\User  $user
+     * @param  \App\Model\User $user
      * @return \Illuminate\Http\Response
      */
     public function show(User $user)
@@ -59,7 +60,7 @@ class LogoutController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\User  $user
+     * @param  \App\Model\User $user
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
@@ -70,8 +71,8 @@ class LogoutController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\User  $user
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Model\User $user
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)
@@ -82,7 +83,7 @@ class LogoutController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\User  $user
+     * @param  \App\Model\User $user
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)

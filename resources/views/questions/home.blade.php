@@ -51,7 +51,7 @@
                             @endif
                         </h1>
                         @foreach($nutrition->all() as $value)
-                            <a class="btn btn-default " disabled="{{ session('nutrition') ? 'disabled' : '' }}"
+                            <a class="btn btn-default {{ session('nutrition') ?'disabled':'' }}"
                                href="{{session('nutrition') ? 'javascript:void(0);' :route('nutrition')}}"
                                title="{{session('nutrition') ? '你已经做过此题' : '点击后，进入问题界面答题'}}">
                                 {{$value->id}}
@@ -65,7 +65,7 @@
                             @endif
                         </h1>
                         @foreach($fallRisk->all() as $value)
-                            <a class="btn btn-default" disabled="{{ session('fall_risk') ? 'disabled' : '' }}"
+                            <a class="btn btn-default {{ session('fall_risk') ? 'disabled' : '' }}"
                                href="{{session('fall_risk') ? 'javascript:void(0);' :route('fall')}}"
                                title="{{session('fall_risk') ? '你已经做过此题' : '点击后，进入问题界面答题'}}">
                                 {{$value->id}}

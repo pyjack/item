@@ -7,7 +7,7 @@
                 <div class="panel panel-default text-center">
                     <div class="panel-heading text-center">用户登陆界面</div>
                     <div class="panel-body text-center">
-                        <form class="form-horizontal text-center" method="POST" action="{{ route('login') }}">
+                        <form class="form-horizontal text-center" method="POST" action="{{url('login')}}">
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">

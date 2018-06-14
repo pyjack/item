@@ -44,15 +44,15 @@ class ScoreController extends Controller
         $data = array_chunk($data, 3);
         foreach ($data as $value) {
             $score->insert([
-                'scores' => $value[0],
+                'scores' => head($value),
                 'user_id' => $value[1],
-                $request->table.'_id' => $value[2],
+                $request->table.'_id' => last($value), //TODO 数组越界代替方法，后期处理
             ]);
             $score_total += $value[0];
         }
 //        dd($score_total);
         $request->session()->put($request->table,$request->table);
-        $request->session()->put($request->table.'_scores',$score_total);
+        $request->session()->flash($request->table.'_scores',$score_total);
 //        dd($request->table.'_scores');
         return redirect()->route('user');
     }

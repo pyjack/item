@@ -15,26 +15,18 @@
 </head>
 <body>
 <div id="app text-center">
-    <nav class="navbar navbar-default navbar-static-top text-center">
+    <nav class="navbar navbar-default text-center">
         <div class="container text-center">
             <div class="navbar-header text-center">
+                <a class="text-center navbar-brand" href="{{ url('#') }}">
+                    {{ config('app.name')}}
+                </a>
+                <ul class="nav navbar-nav navbar-right">
 
-                <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#app-navbar-collapse" aria-expanded="false">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <ul class="nav navbar-nav text-center">
-                    <a class="text-center navbar-brand" href="{{ url('#') }}">
-                        {{ config('app.name')}}
-                    </a>
                     <!-- Authentication Links -->
                     @if (session('user'))
-                        {{--<a href="{{ route('admin') }}" class="navbar-brand">管理员入口</a>--}}
-                    {{--@else--}}
+                        <a href="{{ route('admin') }}" class="navbar-brand">管理员入口</a>
+                    @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-expanded="false" aria-haspopup="true" v-pre>
@@ -59,14 +51,69 @@
                         </li>
                     @endif
                 </ul>
-                {{--</div>--}}
             </div>
-
         </div>
     </nav>
     @yield('content')
-</div>
 
+</div>
+<footer class="footer ">
+    <div class="container">
+        <div class="row footer-top">
+            <div class="col-md-6 col-lg-6">
+                <h4>
+                    <img src="">
+                </h4>
+                <p>我们一直致力于为广大老兵的身体健康做全面评估！</p>
+            </div>
+            <div class="col-md-6  col-lg-5 col-lg-offset-1">
+                <div class="row about">
+                    <div class="col-sm-3">
+                        <h4>关于</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="/about/">关于我们</a></li>
+                            <li><a href="/ad/">广告合作</a></li>
+                            <li><a href="/links/">友情链接</a></li>
+                            <li><a href="/hr/">招聘</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-3">
+                        <h4>联系方式</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="http://weibo.com/bootcss" title="Bootstrap中文网官方微博" target="_blank">新浪微博</a>
+                            </li>
+                            <li><a href="mailto:admin@bootcss.com">电子邮件</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4">
+                        <h4>旗下网站</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="http://www.golaravel.com/" target="_blank">Laravel中文网</a></li>
+                            <li><a href="http://www.ghostchina.com/" target="_blank">Ghost中国</a></li>
+                            <li><a href="http://www.bootcdn.cn/" target="_blank">BootCDN</a></li>
+                            <li><a href="https://pkg.phpcomposer.com/" target="_blank">Packagist中国镜像</a></li>
+                            <li><a href="https://www.return.net/" target="_blank">燃腾教育</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-2">
+                        <h4>赞助商</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="https://www.upyun.com" target="_blank">又拍云</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <hr>
+        <div class="row footer-bottom">
+            <ul class="list-inline text-center">
+                <li><a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备11008151号</a></li>
+                <li>京公网安备11010802014853</li>
+            </ul>
+        </div>
+    </div>
+</footer>
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
 </body>

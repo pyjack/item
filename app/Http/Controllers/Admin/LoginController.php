@@ -40,16 +40,17 @@ class LoginController extends Controller
     public function store(Request $request, Admin $admin)
     {
         //
-//        dd($request->all());
+  //        dd($request->all());
 //        dd($admin->where('phone', $request->phone));
         $result = $admin->where('phone', $request->phone)->first();
-//        dd($result);
-        //Hash 检查，必须是已经存在的密码，不存在的会报错
-        $check_password = Hash::check($request->password, $result->password);
-//        dd($check_password);
+//        $check_password = Hash::check($request->password, $result->password);
+
+//        dd($result->password);
+        // 如果 $result 为 null，调用 $result->password
+        // 会报 Trying to get property of non-object
         if ($result) {
             //验证密码
-//            $check_password = Hash::check($request->password, $result->password);
+            $check_password = Hash::check($request->password, $result->password);
             if ($check_password) {
 
                 //存入 Session

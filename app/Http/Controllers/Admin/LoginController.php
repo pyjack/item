@@ -7,6 +7,7 @@ use App\Model\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
+
 class LoginController extends Controller
 {
     /**
@@ -36,13 +37,19 @@ class LoginController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Admin $admin)
     {
         //
-        $admin = new Admin;
+//        dd($request->all());
+//        dd($admin->where('phone', $request->phone));
         $result = $admin->where('phone', $request->phone)->first();
+//        dd($result);
+        //Hash 检查，必须是已经存在的密码，不存在的会报错
         $check_password = Hash::check($request->password, $result->password);
+//        dd($check_password);
         if ($result) {
+            //验证密码
+//            $check_password = Hash::check($request->password, $result->password);
             if ($check_password) {
 
                 //存入 Session

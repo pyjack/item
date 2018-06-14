@@ -18,7 +18,7 @@ class LogoutController extends Controller
         //判断session里面是否有值(用户是否登陆)
         if ($request->session()->has('user')) {
             //移除session
-            $request->session()->flush();
+            $request->session()->pull('user');
             return redirect()->route('login');
         }
         return redirect()->route('login');

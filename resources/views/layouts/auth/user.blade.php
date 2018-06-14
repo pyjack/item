@@ -15,18 +15,24 @@
 </head>
 <body>
 <div id="app text-center">
-    <nav class="navbar navbar-default text-center">
+    <nav class="navbar navbar-default navbar-static-top text-center">
         <div class="container text-center">
             <div class="navbar-header text-center">
-                <a class="text-center navbar-brand" href="{{ url('#') }}">
-                    {{ config('app.name')}}
-                </a>
-                <ul class="nav navbar-nav navbar-right">
 
+                <!-- Collapsed Hamburger -->
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#app-navbar-collapse" aria-expanded="false">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <ul class="nav navbar-nav text-center">
+                    <a class="text-center navbar-brand" href="{{ url('#') }}">
+                        {{ config('app.name')}}
+                    </a>
                     <!-- Authentication Links -->
                     @if (session('user'))
-                        <a href="{{ route('admin') }}" class="navbar-brand">管理员入口</a>
-                    @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-expanded="false" aria-haspopup="true" v-pre>
@@ -51,7 +57,9 @@
                         </li>
                     @endif
                 </ul>
+                {{--</div>--}}
             </div>
+
         </div>
     </nav>
     @yield('content')
@@ -64,7 +72,7 @@
                 <h4>
                     <img src="">
                 </h4>
-                <p>我们一直致力于为广大老兵的身体健康做全面评估！</p>
+                <p>我们一直致力于为广大老兵的身体将看提供更多的优质技术文档和辅助开发工具！</p>
             </div>
             <div class="col-md-6  col-lg-5 col-lg-offset-1">
                 <div class="row about">

@@ -51,8 +51,8 @@ class ScoreController extends Controller
             $score_total += $value[0];
         }
 //        dd($score_total);
-        $request->session()->flash($request->table,$request->table);
-        $request->session()->flash($request->table.'_scores',$score_total);
+        $request->session()->put($request->table,$request->table);
+        $request->session()->put($request->table.'_scores',$score_total);
 //        dd($request->table.'_scores');
         return redirect()->route('user');
     }

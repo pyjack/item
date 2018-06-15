@@ -58,7 +58,7 @@ class TrunkDiseaseController extends Controller
                 ->with('category', '躯干疾病问题')
                 ->with('table','trunk_disease');
         }
-        return redirect()->route('login');
+        return back();
     }
 
     /**

@@ -17,7 +17,7 @@
 <div id="app">
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
-            <div class="navbar-header">
+            <div class=" text-center">
                 <!-- Collapsed Hamburger -->
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                         data-target="#app-navbar-collapse" aria-expanded="false">
@@ -28,14 +28,14 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand text-center" href="{{ route('user') }}">
+                <a class="navbar-brand" href="{{ route('user') }}">
                     {{ config('app.name') }}
                 </a>
             </div>
             @if(session('user'))
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
+                <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <!-- Authentication Links -->
 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -59,9 +59,8 @@
                                 </li>
                             </ul>
                         </li>
-
-                </ul>
-            </div>
+                    </ul>
+                </div>
             @endif
         </div>
     </nav>

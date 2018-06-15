@@ -19,9 +19,8 @@
                             @if(session('trunk_disease_scores'))
                                 <button type="button" class="btn btn-success">
                                     得分 {{session('trunk_disease_scores')}} </button>
-                            @elseif
-                                <button type="button" class="btn btn-success">
-                                    得分 {{session('trunk_disease_scores')}} </button>
+                                {{--<button type="button" class="btn btn-success">--}}
+                                    {{--得分 {{session('trunk_disease_scores')}} </button>--}}
                             @endif
                         </h1>
                         @foreach($trunkDisease->all() as $value)
@@ -35,9 +34,9 @@
                             @if(session('torso_ability_scores'))
                                 <button type="button" class="btn btn-success">
                                     得分 {{session('torso_ability_scores')}} </button>
-                            @elseif
-                                <button type="button" class="btn btn-success">
-                                    得分 {{session('torso_ability_scores')}} </button>
+                            {{--@elseif(session('torso_ability_scores'))--}}
+                                {{--<button type="button" class="btn btn-success">--}}
+                                    {{--得分 {{session('torso_ability_scores')}} </button>--}}
                             @endif
                         </h1>
                         @foreach($torsoFunction->all() as $value)
@@ -51,9 +50,9 @@
                             @if(session('cognitive_ability_scores'))
                                 <button type="button" class="btn btn-success">
                                     得分 {{session('cognitive_ability_scores')}} </button>
-                            @elseif
-                                <button type="button" class="btn btn-success">
-                                    得分 {{session('cognitive_ability_scores')}} </button>
+                            {{--@elseif--}}
+                                {{--<button type="button" class="btn btn-success">--}}
+                                    {{--得分 {{session('cognitive_ability_scores')}} </button>--}}
                             @endif
                         </h1>
                         @foreach($cognitiveAbility->all() as $value)
@@ -68,9 +67,9 @@
                             @if(session('nutrition_scores'))
                                 <button type="button" class="btn btn-success">
                                     得分 {{session('nutrition_scores')}} </button>
-                            @elseif
-                                <button type="button" class="btn btn-success">
-                                    得分 {{session('nutrition_scores')}} </button>
+                            {{--@elseif--}}
+                                {{--<button type="button" class="btn btn-success">--}}
+                                    {{--得分 {{session('nutrition_scores')}} </button>--}}
                             @endif
                         </h1>
                         @foreach($nutrition->all() as $value)
@@ -86,9 +85,9 @@
                             @if(session('fall_risk_scores'))
                                 <button type="button" class="btn btn-success">
                                     得分 {{session('fall_risk_scores')}} </button>
-                            @elseif
-                                <button type="button" class="btn btn-success">
-                                    得分 {{session('fall_risk_scores')}} </button>
+                            {{--@elseif--}}
+                                {{--<button type="button" class="btn btn-success">--}}
+                                    {{--得分 {{session('fall_risk_scores')}} </button>--}}
                             @endif
                         </h1>
                         @foreach($fallRisk->all() as $value)
@@ -104,9 +103,9 @@
                             @if(session('psycho_spirit_scores'))
                                 <button type="button" class="btn btn-success">
                                     得分 {{session('psycho_spirit_scores')}} </button>
-                            @elseif
-                                <button type="button" class="btn btn-success">
-                                    得分 {{session('psycho_spirit_scores')}} </button>
+                            {{--@elseif()--}}
+                                {{--<button type="button" class="btn btn-success">--}}
+                                    {{--得分 {{session('psycho_spirit_scores')}} </button>--}}
                             @endif
                         </h1>
                         @foreach($psychoSpirit->all() as $value)

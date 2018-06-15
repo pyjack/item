@@ -12,8 +12,9 @@ let mix = require('laravel-mix');
  */
 
 //
-mix.js('resources/assets/js/app.js', 'public/js')//
-   .sass('resources/assets/sass/app.scss', 'public/css');
+mix.js('resources/assets/js/user.js', 'public/js')//
+   .js('resources/assets/js/admin.js', 'public/js')//
+   .sass('resources/assets/sass/user.scss', 'public/css');
    // .copyDirectory('resources/assets/image/*','public/image');
 
     // .sourceMaps()//资源映射,给使用浏览器的开发人员工具提供额外的调试信息，默认禁用

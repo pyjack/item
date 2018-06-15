@@ -11,7 +11,7 @@
     <title>{{ config('app.name', '中澳医院老兵健康评估测试') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/user.css') }}" rel="stylesheet">
 </head>
 <body>
 <div id="app">
@@ -61,13 +61,41 @@
                         </li>
                     </ul>
                 </div>
+            @elseif(session('user'))
+                <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <!-- Authentication Links -->
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false" aria-haspopup="true" v-pre>
+                                管理员入口 <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ url('/admin/{id}') }}">个人信息</a></li>
+                                <li>
+                                    <a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        退出
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                          style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             @endif
         </div>
     </nav>
     @yield('content')
-    <footer class="footer">
+    <footer class="footer" id="footer">
         <div class="container text-center">
-            <hr>
             <div class="row footer-bottom">
                 <ul class="list-inline ">
                     <li>
@@ -83,6 +111,6 @@
     </footer>
 </div>
 <!-- Scripts -->
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/user.js') }}"></script>
 </body>
 </html>

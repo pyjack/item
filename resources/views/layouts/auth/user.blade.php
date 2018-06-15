@@ -14,11 +14,10 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-<div id="app text-center">
-    <nav class="navbar navbar-default navbar-static-top text-center">
-        <div class="container text-center">
-            <div class="navbar-header text-center">
-
+<div id="app">
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
                 <!-- Collapsed Hamburger -->
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                         data-target="#app-navbar-collapse" aria-expanded="false">
@@ -27,12 +26,17 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <ul class="nav navbar-nav text-center">
-                    <a class="text-center navbar-brand" href="{{ url('#') }}">
-                        {{ config('app.name')}}
-                    </a>
+
+                <!-- Branding Image -->
+                <a class="navbar-brand text-center" href="{{ route('user') }}">
+                    {{ config('app.name') }}
+                </a>
+            </div>
+            @if(session('user'))
+            <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
-                    @if (session('user'))
+
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-expanded="false" aria-haspopup="true" v-pre>
@@ -40,7 +44,7 @@
                             </a>
 
                             <ul class="dropdown-menu">
-                                <li class=""><a href="{{ url('/') }}">个人信息</a></li>
+                                <li><a href="{{ url('/admin/{id}') }}">个人信息</a></li>
                                 <li>
                                     <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -55,73 +59,30 @@
                                 </li>
                             </ul>
                         </li>
-                    @endif
-                </ul>
-                {{--</div>--}}
-            </div>
 
+                </ul>
+            </div>
+            @endif
         </div>
     </nav>
     @yield('content')
-
+    <footer class="footer">
+        <div class="container text-center">
+            <hr>
+            <div class="row footer-bottom">
+                <ul class="list-inline ">
+                    <li>
+                        <p>© {{date('Y')}}
+                            <a target="_blank" href="http://www.haohanet.com">
+                                浩瀚科技
+                            </a>提供技术支持
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
 </div>
-<footer class="footer ">
-    <div class="container">
-        <div class="row footer-top">
-            <div class="col-md-6 col-lg-6">
-                <h4>
-                    <img src="">
-                </h4>
-                <p>我们一直致力于为广大老兵的身体将看提供更多的优质技术文档和辅助开发工具！</p>
-            </div>
-            <div class="col-md-6  col-lg-5 col-lg-offset-1">
-                <div class="row about">
-                    <div class="col-sm-3">
-                        <h4>关于</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="/about/">关于我们</a></li>
-                            <li><a href="/ad/">广告合作</a></li>
-                            <li><a href="/links/">友情链接</a></li>
-                            <li><a href="/hr/">招聘</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-3">
-                        <h4>联系方式</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="http://weibo.com/bootcss" title="Bootstrap中文网官方微博" target="_blank">新浪微博</a>
-                            </li>
-                            <li><a href="mailto:admin@bootcss.com">电子邮件</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-4">
-                        <h4>旗下网站</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="http://www.golaravel.com/" target="_blank">Laravel中文网</a></li>
-                            <li><a href="http://www.ghostchina.com/" target="_blank">Ghost中国</a></li>
-                            <li><a href="http://www.bootcdn.cn/" target="_blank">BootCDN</a></li>
-                            <li><a href="https://pkg.phpcomposer.com/" target="_blank">Packagist中国镜像</a></li>
-                            <li><a href="https://www.return.net/" target="_blank">燃腾教育</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-2">
-                        <h4>赞助商</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="https://www.upyun.com" target="_blank">又拍云</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <hr>
-        <div class="row footer-bottom">
-            <ul class="list-inline text-center">
-                <li><a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备11008151号</a></li>
-                <li>京公网安备11010802014853</li>
-            </ul>
-        </div>
-    </div>
-</footer>
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
 </body>

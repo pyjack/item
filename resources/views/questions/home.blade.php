@@ -23,7 +23,7 @@
                     </div>
                     <div class="panel-heading text-center"><h1>{{ $torso }}</h1>
                         @foreach($torsoFunction->all() as $value)
-                            <a class="btn btn-default" href="{{route('trunk')}}">
+                            <a class="btn btn-default" href="{{route('torso')}}">
                                 {{$value->id}}
                             </a>
                         @endforeach

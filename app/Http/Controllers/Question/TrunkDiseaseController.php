@@ -55,7 +55,8 @@ class TrunkDiseaseController extends Controller
 
             return view('questions.trunk')
                 ->with('questions', $trunkDisease->all())
-                ->with('category', '躯干疾病问题');
+                ->with('category', '躯干疾病问题')
+                ->with('table','trunk_disease');
         }
         return redirect()->route('login');
     }

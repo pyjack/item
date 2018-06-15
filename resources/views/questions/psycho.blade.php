@@ -7,7 +7,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading text-center"><h1>{{ $category }}</h1></div>
                     <div class="panel-body">
-                        <form id="question_form" class="form-horizontal" method="POST" action="{{ route('nutrition.submit') }}">
+                        <form id="question_form" class="form-horizontal" method="POST" action="{{ route('psycho.submit') }}">
                             {{ csrf_field() }}
                             <input type="hidden" name="table" value="{{$table}}">
                             @foreach($questions as $value)

@@ -49,11 +49,17 @@ class TorsoFunctionController extends Controller
      * @param  \App\Model\TorsoFunction  $torsoFunction
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(Request $request, TorsoFunction $torsoFunction)
     {
         //
-        $torsoFunction =new TorsoFunction;
-        return $torsoFunction->pluck('questions','id');
+        if ($request->session()->has('user')) {
+
+            return view('questions.torso')
+                ->with('questions', $torsoFunction->all())
+                ->with('category', '躯干功能问题')
+                ->with('table','torso_function');
+        }
+        return redirect()->route('login');
     }
 
     /**

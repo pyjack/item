@@ -48,11 +48,17 @@ class PsychoSpiritController extends Controller
      * @param  \App\Model\PsychoSpirit  $psychoSpirit
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(Request $request, PsychoSpirit $psychoSpirit)
     {
         //
-        $psychoSpirit =new PsychoSpirit;
-        return $psychoSpirit->pluck('questions','id');
+        if ($request->session()->has('user')) {
+
+            return view('questions.psycho')
+                ->with('questions', $psychoSpirit->all())
+                ->with('category', '心理精神问题')
+                ->with('table','psycho_spirit');
+        }
+        return redirect()->route('login');
     }
 
     /**

@@ -18,6 +18,13 @@ class LogoutController extends Controller
         //判断session里面是否有值(用户是否登陆)
         if ($request->session()->has('user')) {
             //移除session
+            $request->session()->pull(session('user_id').'_trunk_disease_scores');
+            $request->session()->pull(session('user_id').'_torso_function_scores');
+            $request->session()->pull(session('user_id').'_cognitive_ability_scores');
+            $request->session()->pull(session('user_id').'_fall_risk_scores');
+            $request->session()->pull(session('user_id').'_nutrition_scores');
+            $request->session()->pull(session('user_id').'_psycho_spirit_scores');
+            $request->session()->pull('user_id');
             $request->session()->pull('user');
             return redirect()->route('login');
         }

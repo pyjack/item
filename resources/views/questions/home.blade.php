@@ -16,65 +16,56 @@
                 <div class="panel panel-default">
                     <div class="panel-heading text-center">
                         <h1>{{ $trunk }}
-                            @if(session('trunk_disease_scores'))
+                            @if(session(session('user_id').'_trunk_disease_scores'))
                                 <button type="button" class="btn btn-success">
-                                    得分 {{session('trunk_disease_scores')}} </button>
-                                {{--<button type="button" class="btn btn-success">--}}
-                                    {{--得分 {{session('trunk_disease_scores')}} </button>--}}
+                                    得分 {{session(session('user_id').'_trunk_disease_scores')}} </button>
                             @endif
                         </h1>
                         @foreach($trunkDisease->all() as $value)
-                            <a class="btn btn-default " href="{{route('trunk')}}">
+                            <a class="btn btn-default {{ session(session('user_id').'_trunk_disease_scores') ? 'disabled btn-success' : '' }}"
+                               href="{{session(session('user_id').'_trunk_disease_scores') ? 'javascript:void(0);' :route('trunk')}}">
                                 {{$value->id}}
                             </a>
                         @endforeach
                     </div>
                     <div class="panel-heading text-center">
                         <h1>{{ $torso }}
-                            @if(session('torso_ability_scores'))
+                            @if(session(session('user_id').'_torso_function_scores'))
                                 <button type="button" class="btn btn-success">
-                                    得分 {{session('torso_ability_scores')}} </button>
-                            {{--@elseif(session('torso_ability_scores'))--}}
-                                {{--<button type="button" class="btn btn-success">--}}
-                                    {{--得分 {{session('torso_ability_scores')}} </button>--}}
+                                    得分 {{session(session('user_id').'_torso_function_scores')}} </button>
                             @endif
                         </h1>
                         @foreach($torsoFunction->all() as $value)
-                            <a class="btn btn-default" href="{{route('torso')}}">
+                            <a class="btn btn-default {{ session(session('user_id').'_torso_function_scores') ? 'disabled btn-success' : '' }}"
+                               href="{{session(session('user_id').'_torso_function_scores') ? 'javascript:void(0);' :route('torso')}}">
                                 {{$value->id}}
                             </a>
                         @endforeach
                     </div>
                     <div class="panel-heading text-center">
                         <h1>{{ $cognitive }}
-                            @if(session('cognitive_ability_scores'))
-                                <button type="button" class="btn btn-success">
-                                    得分 {{session('cognitive_ability_scores')}} </button>
-                            {{--@elseif--}}
-                                {{--<button type="button" class="btn btn-success">--}}
-                                    {{--得分 {{session('cognitive_ability_scores')}} </button>--}}
+                            @if(session(session('user_id').'_cognitive_ability_scores'))
+                                <button type="button" class="btn btn-default btn-success">
+                                    得分 {{session(session('user_id').'_cognitive_ability_scores')}} </button>
                             @endif
                         </h1>
                         @foreach($cognitiveAbility->all() as $value)
-                            <a class="btn btn-default" disabled="{{ session('cognitive_ability') ? 'disabled' : '' }}"
-                               href="{{session('cognitive_ability') ? 'javascript:void(0);' :route('cognitive')}}">
+                            <a class="btn btn-default {{ session(session('user_id').'_cognitive_ability_scores') ? 'disabled btn-success' : '' }}"
+                               href="{{session(session('user_id').'_cognitive_ability_scores') ? 'javascript:void(0);' :route('cognitive')}}">
                                 {{$value->id}}
                             </a>
                         @endforeach
                     </div>
                     <div class="panel-heading text-center">
                         <h1>{{ $nutritions }}
-                            @if(session('nutrition_scores'))
+                            @if(session(session('user_id').'_nutrition_scores'))
                                 <button type="button" class="btn btn-success">
-                                    得分 {{session('nutrition_scores')}} </button>
-                            {{--@elseif--}}
-                                {{--<button type="button" class="btn btn-success">--}}
-                                    {{--得分 {{session('nutrition_scores')}} </button>--}}
+                                    得分 {{session(session('user_id').'_nutrition_scores')}} </button>
                             @endif
                         </h1>
                         @foreach($nutrition->all() as $value)
-                            <a class="btn btn-default {{ session('nutrition') ?'disabled':'' }}"
-                               href="{{session('nutrition') ? 'javascript:void(0);' :route('nutrition')}}"
+                            <a class="btn btn-default {{ session(session('user_id').'_nutrition_scores') ?'disabled btn-success':'' }}"
+                               href="{{session(session('user_id').'_nutrition_scores') ? 'javascript:void(0);' :route('nutrition')}}"
                             >
                                 {{$value->id}}
                             </a>
@@ -82,34 +73,28 @@
                     </div>
                     <div class="panel-heading text-center">
                         <h1>{{ $fall }}
-                            @if(session('fall_risk_scores'))
+                            @if(session(session('user_id').'_fall_risk_scores'))
                                 <button type="button" class="btn btn-success">
-                                    得分 {{session('fall_risk_scores')}} </button>
-                            {{--@elseif--}}
-                                {{--<button type="button" class="btn btn-success">--}}
-                                    {{--得分 {{session('fall_risk_scores')}} </button>--}}
+                                    得分 {{session(session('user_id').'_fall_risk_scores')}} </button>
                             @endif
                         </h1>
                         @foreach($fallRisk->all() as $value)
-                            <a class="btn btn-default {{ session('fall_risk') ? 'disabled' : '' }}"
-                               href="{{session('fall_risk') ? 'javascript:void(0);' :route('fall')}}"
-                               title="{{session('fall_risk') ? '你已经做过此题' : '点击后，进入问题界面答题'}}">
+                            <a class="btn btn-default {{ session(session('user_id').'_fall_risk_scores') ? 'disabled btn-success' : '' }}"
+                               href="{{session(session('user_id').'_fall_risk_scores') ? 'javascript:void(0);' :route('fall')}}">
                                 {{$value->id}}
                             </a>
                         @endforeach
                     </div>
                     <div class="panel-heading text-center">
                         <h1>{{ $psycho }}
-                            @if(session('psycho_spirit_scores'))
+                            @if(session(session('user_id').'_psycho_spirit_scores'))
                                 <button type="button" class="btn btn-success">
-                                    得分 {{session('psycho_spirit_scores')}} </button>
-                            {{--@elseif()--}}
-                                {{--<button type="button" class="btn btn-success">--}}
-                                    {{--得分 {{session('psycho_spirit_scores')}} </button>--}}
+                                    得分 {{session(session('user_id').'_psycho_spirit_scores')}} </button>
                             @endif
                         </h1>
                         @foreach($psychoSpirit->all() as $value)
-                            <a class="btn btn-default" href="{{route('psycho')}}">
+                            <a class="btn btn-default {{ session(session('user_id').'_psycho_spirit_scores') ? 'disabled btn-success' : '' }}"
+                               href="{{session(session('user_id').'_psycho_spirit_scores') ? 'javascript:void(0);' :route('psycho')}}">
                                 {{$value->id}}
                             </a>
                         @endforeach

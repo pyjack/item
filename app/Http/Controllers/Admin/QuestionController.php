@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Model\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use APP\Http\Controllers\Question\QuestionsController;
 
 class QuestionController extends Controller
 {

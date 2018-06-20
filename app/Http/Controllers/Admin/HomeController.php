@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Model\Admin;
+use App\Model\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,14 +14,13 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request,User $user)
     {
-        //
         //判断session里面是否有值(用户是否登陆)
-//        dd($request->session()->has('admin'));
         if ($request->session()->has('admin')) {
-
-            return view('admin.home');
+            //登录后查询用户信息
+            $data = $user->paginate(13);
+            return view('admin.home')->with('data',$data);
         }
         return redirect()->route('admin.login');
     }

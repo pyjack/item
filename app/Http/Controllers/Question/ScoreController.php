@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Question;
 
 use App\Http\Controllers\Controller;
 use App\Model\Score;
+use App\Model\User;
 use Illuminate\Http\Request;
 
 class ScoreController extends Controller
@@ -34,9 +35,8 @@ class ScoreController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Score $score)
+    public function store(Request $request, Score $score, User $user)
     {
-        //
         $score_total = 0;
         $data = $request->all();
         unset($data['_token']);
@@ -46,12 +46,38 @@ class ScoreController extends Controller
             $score->insert([
                 'scores' => head($value),
                 'user_id' => $value[1],
-                $request->table.'_id' => last($value), //TODO 数组越界代替方法，后期处理
+                $request->table . '_id' => last($value), //TODO 数组越界代替方法，后期处理
             ]);
             $score_total += $value[0];
         }
-//        dd($request);
-        $request->session()->put(session('user_id').'_'.$request->table.'_scores',$score_total);
+        //各项分数存入session
+        $request->session()->put(
+            session('user_id') . '_' . $request->table . '_scores',
+            $score_total
+        );
+
+        //更新用户信息表总分，
+        $score_status =
+            session(session('user_id') . '_torso_function_scores') &&
+            session(session('user_id') . '_trunk_disease_scores') &&
+            session(session('user_id') . '_cognitive_ability_scores') &&
+            session(session('user_id') . '_nutrition_scores') &&
+            session(session('user_id') . '_fall_risk_scores') &&
+            session(session('user_id') . '_psycho_spirit_scores');
+
+        if ($score_status) {
+            $scores =
+                session(session('user_id') . '_torso_function_scores') +
+                session(session('user_id') . '_trunk_disease_scores') +
+                session(session('user_id') . '_cognitive_ability_scores') +
+                session(session('user_id') . '_nutrition_scores') +
+                session(session('user_id') . '_fall_risk_scores') +
+                session(session('user_id') . '_psycho_spirit_scores');
+
+            $update_score = $user->where('id', session('user_id'));
+
+            $update_score->update(['score' => $scores]);
+        }
         return redirect()->route('user');
     }
 

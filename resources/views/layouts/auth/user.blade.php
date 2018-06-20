@@ -16,7 +16,7 @@
 <body>
 <div id="app">
     <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
+        <div class="container col-md-12">
             <div class=" text-center">
                 <!-- Collapsed Hamburger -->
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"

@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', '中澳医院老兵健康评估测试') }}</title>
-
+    {{ method_field('PATCH') }}
     <!-- Styles -->
     <link href="{{ asset('css/user.css') }}" rel="stylesheet">
 </head>
@@ -94,21 +94,21 @@
         </div>
     </nav>
     @yield('content')
-    <footer class="footer" id="footer">
-        <div class="container text-center">
-            <div class="row footer-bottom">
-                <ul class="list-inline ">
-                    <li>
-                        <p>© {{date('Y')}}
-                            <a target="_blank" href="http://www.haohanet.com">
-                                浩瀚科技
-                            </a>提供技术支持
-                        </p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </footer>
+    {{--<footer class="footer" id="footer">--}}
+        {{--<div class="container text-center">--}}
+            {{--<div class="row footer-bottom">--}}
+                {{--<ul class="list-inline ">--}}
+                    {{--<li>--}}
+                        {{--<p>© {{date('Y')}}--}}
+                            {{--<a target="_blank" href="http://www.haohanet.com">--}}
+                                {{--浩瀚科技--}}
+                            {{--</a>提供技术支持--}}
+                        {{--</p>--}}
+                    {{--</li>--}}
+                {{--</ul>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</footer>--}}
 </div>
 <!-- Scripts -->
 <script src="{{ asset('js/user.js') }}"></script>

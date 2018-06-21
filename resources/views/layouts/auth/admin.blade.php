@@ -14,6 +14,7 @@
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
 </head>
 <body>
+{{ method_field('PATCH') }}
 <div id="app">
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container  col-md-12">

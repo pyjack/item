@@ -46,7 +46,7 @@ class HomeController extends Controller
                 ->with('nutritions', '营养问题')
                 ->with('psycho', '心理精神问题');
         }
-        return redirect()->route('login');
+        return redirect('login.html');
     }
 
     /**
@@ -113,10 +113,5 @@ class HomeController extends Controller
     public function destroy(User $user)
     {
         //
-    }
-
-    public function home(){
-
-
     }
 }

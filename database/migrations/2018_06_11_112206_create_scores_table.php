@@ -22,7 +22,7 @@ class CreateScoresTable extends Migration
             $table->integer('cognitive_ability_id')->nullable()->comment('认知能力问题ID');
             $table->integer('torso_function_id')->nullable()->comment('躯干功能问题ID');
             $table->integer('trunk_disease_id')->nullable()->comment('躯干疾病问题ID');
-            $table->integer('scores')->comment('用户分数');
+            $table->integer('scores')->comment('用户总分');
             //外键约束
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('psycho_spirit_id')->references('id')->on('psycho_spirit');

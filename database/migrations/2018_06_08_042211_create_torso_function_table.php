@@ -15,7 +15,7 @@ class CreateTorsoFunctionTable extends Migration
     {
         Schema::create('torso_function', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('questions', '255')->default('')->comment('问题');
+            $table->string('questions', '255')->default(null)->comment('问题');
             $table->string('yes', '3')->default(null)->comment('分值');
             $table->string('no', '3')->default(null)->comment('分值');
             $table->timestamps();

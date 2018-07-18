@@ -16,7 +16,8 @@ class CreateCognitiveAbilityTable extends Migration
         Schema::create('cognitive_ability', function (Blueprint $table) {
             $table->increments('id');
             $table->string('questions', '255')->default('')->comment('问题');
-            $table->string('score', '3')->default('0')->comment('分值');
+            $table->string('yes', '3')->default(null)->comment('分值');
+            $table->string('no', '3')->default(null)->comment('分值');
             $table->timestamps();
         });
     }

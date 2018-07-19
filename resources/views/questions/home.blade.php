@@ -36,31 +36,31 @@
                                     得分 {{session(session('user_id').'_nutrition_scores')}} </button>
                             @endif
                         </h1>
-                        {{$nutrition->links()}}
+                        {{--{{$nutrition->links()}}--}}
 
-                    {{--@foreach($nutrition->all() as $value)--}}
-                            {{--<a class="btn btn-default {{ session(session('user_id').'_nutrition_scores') ?'disabled alert-success':'' }}"--}}
-                               {{--href="{{session(session('user_id').'_nutrition_scores') ? 'javascript:void(0);' :route('nutrition')}}"--}}
-                            {{-->--}}
-                                {{--{{$value->id}}--}}
-                            {{--</a>--}}
-                        {{--@endforeach--}}
-                    </div>
-
-                    <div class="panel-heading text-center">
-                        <h1>{{ $trunk }}
-                            @if(session(session('user_id').'_trunk_disease_scores'))
-                                <button type="button" class="btn alert-success">
-                                    得分 {{session(session('user_id').'_trunk_disease_scores')}} </button>
-                            @endif
-                        </h1>
-                        @foreach($trunkDisease->all() as $value)
-                            <a class="btn btn-default {{ session(session('user_id').'_trunk_disease_scores') ? 'disabled alert-success' : '' }}"
-                               href="{{session(session('user_id').'_trunk_disease_scores') ? 'javascript:void(0);' :route('trunk')}}">
+                    @foreach($nutrition->all() as $value)
+                            <a class="btn btn-default {{ session(session('user_id').'_nutrition_scores') ?'disabled alert-success':'' }}"
+                               href="{{session(session('user_id').'_nutrition_scores') ? 'javascript:void(0);' :route('nutrition')}}"
+                            >
                                 {{$value->id}}
                             </a>
                         @endforeach
                     </div>
+
+                    {{--<div class="panel-heading text-center">--}}
+                        {{--<h1>{{ $trunk }}--}}
+                            {{--@if(session(session('user_id').'_trunk_disease_scores'))--}}
+                                {{--<button type="button" class="btn alert-success">--}}
+                                    {{--得分 {{session(session('user_id').'_trunk_disease_scores')}} </button>--}}
+                            {{--@endif--}}
+                        {{--</h1>--}}
+                        {{--@foreach($trunkDisease->all() as $value)--}}
+                            {{--<a class="btn btn-default {{ session(session('user_id').'_trunk_disease_scores') ? 'disabled alert-success' : '' }}"--}}
+                               {{--href="{{session(session('user_id').'_trunk_disease_scores') ? 'javascript:void(0);' :route('trunk')}}">--}}
+                                {{--{{$value->id}}--}}
+                            {{--</a>--}}
+                        {{--@endforeach--}}
+                    {{--</div>--}}
                     <div class="panel-heading text-center">
                         <h1>{{ $torso }}
                             @if(session(session('user_id').'_torso_function_scores'))
@@ -76,8 +76,6 @@
                         @endforeach
                     </div>
                     <div class="panel-heading text-center">
-
-                        <
                         <h1>{{ $cognitive }}
                             @if(session(session('user_id').'_cognitive_ability_scores'))
                                 <button type="button" class="btn btn-default alert-success">

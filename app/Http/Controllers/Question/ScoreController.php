@@ -39,8 +39,10 @@ class ScoreController extends Controller
     {
         $score_total = 0;
         $data = $request->all();
+
         unset($data['_token']);
         unset($data['table']);
+
         $data = array_chunk($data, 3);
         foreach ($data as $value) {
             $score->insert([
@@ -50,6 +52,8 @@ class ScoreController extends Controller
             ]);
             $score_total += $value[0];
         }
+
+//        dd();
 
         //CGA 记分问题
         switch ($request->table) {
@@ -148,6 +152,8 @@ class ScoreController extends Controller
             session('user_id') . '_' . $request->table . '_scores',
             $score_total
         );
+
+//        dd(session());
 
         //更新用户信息表总分，
         $score_status =

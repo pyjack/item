@@ -54,7 +54,7 @@ class PsychoSpiritController extends Controller
         if ($request->session()->has('user')) {
 
             return view('questions.psycho')
-                ->with('questions', $psychoSpirit->all())
+                ->with('questions', $psychoSpirit->paginate(1))
                 ->with('category', '心理精神问题')
                 ->with('table','psycho_spirit');
         }

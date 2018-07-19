@@ -21,13 +21,13 @@
                                     得分 {{session(session('user_id').'_psycho_spirit_scores')}} </button>
                             @endif
                         </h1>
-                        {{$psychoSpirit->links()}}
-                        {{--@foreach($psychoSpirit->all() as $value)--}}
-                            {{--<a class="btn btn-default {{ session(session('user_id').'_psycho_spirit_scores') ? 'disabled alert-success' : '' }}"--}}
-                               {{--href="{{session(session('user_id').'_psycho_spirit_scores') ? 'javascript:void(0);' :route('psycho')}}">--}}
-                                {{--{{$value->id}}--}}
-                            {{--</a>--}}
-                        {{--@endforeach--}}
+                        {{--{{$psychoSpirit->links()}}--}}
+                        @foreach($psychoSpirit->all() as $value)
+                            <a class="btn btn-default {{ session(session('user_id').'_psycho_spirit_scores') ? 'disabled alert-success' : '' }}"
+                               href="{{session(session('user_id').'_psycho_spirit_scores') ? 'javascript:void(0);' :route('psycho')}}">
+                                {{$value->id}}
+                            </a>
+                        @endforeach
                     </div>
                     <div class="panel-heading text-center">
                         <h1>{{ $nutritions }}

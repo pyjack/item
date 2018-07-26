@@ -21,7 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('age','3')->comment('年龄');
             $table->string('birth','12')->comment('出生年月日');
             $table->string('gender','1')->comment('性别');
-            $table->string('score','3')->nullable()->comment('分数');
+            $table->string('cga','3')->nullable()->comment('分数');
+            $table->string('class','8')->nullable()->comment('健康等级');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -47,10 +47,13 @@
                                 姓名
                             </th>
                             <th class="text-center">
-                                总分
+                                GPA
                             </th>
                             <th class="text-center">
-                                总分
+                                等级
+                            </th>
+                            <th class="text-center">
+                                操作
                             </th>
                         </tr>
                         </thead>
@@ -72,6 +75,11 @@
                                 </td>
                                 <td>
                                     {{$value->gender == 0 ? '男' : '女'}}
+                                </td>
+
+                                <td>
+                                    <a href="{{ route('user.info',$value->id) }}"> 详情 </a>
+                                    {{--<a href="{{ route('') }}"> 详情 </a>--}}
                                 </td>
                             </tr>
                         @endforeach

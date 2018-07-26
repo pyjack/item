@@ -53,9 +53,15 @@ class ScoreController extends Controller
             $score_total += $value[0];
         }
 
-//        dd();
+        // TODO  swith 中的变量有是局部变量？
+        $psycho_spirit_scores = '';
+        $nutrition_scores = '';
+        $fall_risk_scores = '';
+        $cognitive_ability_scores = '';
+        $torso_function_scores = '';
 
         //CGA 记分问题
+//        dd($request->table);
         switch ($request->table) {
             case 'psycho_spirit':
                 if ($score_total >= 0 && $score_total <= 5) {
@@ -153,9 +159,7 @@ class ScoreController extends Controller
             $score_total
         );
 
-//        dd(session());
-
-        //更新用户信息表总分，
+        //更新用户信息表总分
         $score_status =
             session(session('user_id') . '_psycho_spirit_scores') &&
             session(session('user_id') . '_nutrition_scores') &&
@@ -165,6 +169,7 @@ class ScoreController extends Controller
 //            session(session('user_id') . '_trunk_disease_scores');
 
         if ($score_status) {
+//            dd($psycho_spirit_scores);
             $scores =
                 $psycho_spirit_scores +
                 $nutrition_scores +

@@ -132,3 +132,4 @@ Homestead.json
 
 .idea/
 package-lock.json
+composer.lock

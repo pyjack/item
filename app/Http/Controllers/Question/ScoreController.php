@@ -53,29 +53,23 @@ class ScoreController extends Controller
             $score_total += $value[0];
         }
 
-        // TODO  swith 中的变量有是局部变量？
-        $psycho_spirit_scores = '';
-        $nutrition_scores = '';
-        $fall_risk_scores = '';
-        $cognitive_ability_scores = '';
-        $torso_function_scores = '';
 
         //CGA 记分问题
 //        dd($request->table);
         switch ($request->table) {
             case 'psycho_spirit':
                 if ($score_total >= 0 && $score_total <= 5) {
-                    $psycho_spirit_scores = 1;
+                    $cga = 1;
                     $psycho_spirit_status = "无抑郁症";
                     break;
                 }
                 if ($score_total >= 6 && $score_total <= 10) {
-                    $psycho_spirit_scores = 2;
+                    $cga = 2;
                     $psycho_spirit_status = "轻度抑郁";
                     break;
                 }
                 if ($score_total >= 11 && $score_total <= 15) {
-                    $psycho_spirit_scores = 3;
+                    $cga = 3;
                     $psycho_spirit_status = "中重度抑郁";
                     break;
                 }
@@ -83,17 +77,17 @@ class ScoreController extends Controller
 
             case 'nutrition':
                 if ($score_total >= 11) {
-                    $nutrition_scores = 1;
+                    $cga = 1;
                     $nutrition_status = "营养良好";
                     break;
                 }
                 if ($score_total >= 6 && $score_total <= 10) {
-                    $nutrition_scores = 2;
+                    $cga = 2;
                     $nutrition_status = "潜在营养良好";
                     break;
                 }
                 if ($score_total >= 11 && $score_total <= 15) {
-                    $nutrition_scores = 3;
+                    $cga = 3;
                     $nutrition_status = "营养不良";
                     break;
                 }
@@ -101,17 +95,17 @@ class ScoreController extends Controller
 
             case 'fall_risk':
                 if ($score_total >= 0 && $score_total <= 2) {
-                    $fall_risk_scores = 1;
+                    $cga = 1;
                     $fall_risk_status = "低危";
                     break;
                 }
                 if ($score_total >= 3 && $score_total <= 9) {
-                    $fall_risk_scores = 2;
+                    $cga = 2;
                     $fall_risk_status = "中危";
                     break;
                 }
                 if ($score_total >= 10) {
-                    $fall_risk_scores = 3;
+                    $cga = 3;
                     $fall_risk_status = "高危";
                     break;
                 }
@@ -119,45 +113,43 @@ class ScoreController extends Controller
 
             case 'cognitive_ability':
                 if ($score_total >= 7) {
-                    $cognitive_ability_scores = 1;
+                    $cga = 1;
                     $cognitive_ability_status = "认知较好";
                     break;
                 }
-                if ($score_total >= 4 && $score_total <= 6) {
-                    $cognitive_ability_scores = 2;
+                if ($score_total >= 5 && $score_total <= 6) {
+                    $cga = 2;
                     $cognitive_ability_status = "认知尚可";
                     break;
                 }
                 if ($score_total >= 0 && $score_total <= 4) {
-                    $cognitive_ability_scores = 3;
+                    $cga = 3;
                     $cognitive_ability_status = "认知较差";
                     break;
                 }
                 break;
 
             case 'torso_function':
-                if ($score_total >= 0 && $score_total <= 5) {
-                    $torso_function_scores = 1;
-                    $torso_function_status = "无抑郁症";
+                if ($score_total >= 60) {
+                    $cga = 1;
+                    $torso_function_status = "生活基本自理";
                     break;
                 }
-                if ($score_total >= 6 && $score_total <= 10) {
-                    $torso_function_scores = 2;
-                    $torso_function_status = "轻度抑郁";
+                if ($score_total >= 20 && $score_total <= 59) {
+                    $cga = 2;
+                    $torso_function_status = "生活需要帮助";
                     break;
                 }
-                if ($score_total >= 11 && $score_total <= 15) {
-                    $torso_function_scores = 3;
-                    $torso_function_status = "中重度抑郁";
+                if ($score_total >= 0 && $score_total <= 20) {
+                    $cga = 3;
+                    $torso_function_status = "生活完全需要依赖";
                     break;
                 }
         }
 
         //各项分数存入session
-        $request->session()->put(
-            session('user_id') . '_' . $request->table . '_scores',
-            $score_total
-        );
+        $request->session()->put(session('user_id') . '_' . $request->table . '_scores', $score_total);
+        $request->session()->put(session('user_id') . '_' . 'cga', session('user_id_cga') + $cga);
 
         //更新用户信息表总分
         $score_status =
@@ -166,22 +158,12 @@ class ScoreController extends Controller
             session(session('user_id') . '_fall_risk_scores') &&
             session(session('user_id') . '_cognitive_ability_scores') &&
             session(session('user_id') . '_torso_function_scores');
-//            session(session('user_id') . '_trunk_disease_scores');
 
         if ($score_status) {
-//            dd($psycho_spirit_scores);
-            $scores =
-                $psycho_spirit_scores +
-                $nutrition_scores +
-                $fall_risk_scores +
-                $cognitive_ability_scores +
-                $torso_function_scores;
-
-
-            $update_score = $user->where('id', session('user_id'));
-
-            $update_score->update(['score' => $scores]);
+            $user = $user->where('id', session('user_id'));
+            $user->update(['cga' => session(session('user_id') . '_' . 'cga')]);
         }
+
         return redirect()->route('user');
     }
 

@@ -63,7 +63,6 @@
                         <tbody>
                         @foreach($data as $value)
                             <tr class="error">
-
                                 <td>
                                     {{$value->id}}
                                 </td>
@@ -77,14 +76,13 @@
                                     {{$value->gender == 0 ? '男' : '女'}}
                                 </td>
                                 <td>
-                                    {{$value->gpa}}
+                                    {{$value->cga}}
                                 </td>
                                 <td>
                                     {{$value->class}}
                                 </td>
                                 <td>
                                     <a href="{{ route('user.detail',$value->id) }}"> 详情 </a>
-                                    {{--<a href="{{ route('') }}"> 详情 </a>--}}
                                 </td>
                             </tr>
                         @endforeach

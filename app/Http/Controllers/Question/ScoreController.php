@@ -145,6 +145,7 @@ class ScoreController extends Controller
                     $torso_function_status = "生活完全需要依赖";
                     break;
                 }
+                break;
         }
 
         //各项分数存入session

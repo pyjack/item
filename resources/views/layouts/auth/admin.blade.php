@@ -14,7 +14,7 @@
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
 </head>
 <body>
-{{ method_field('PATCH') }}
+{{--{{ method_field('PATCH') }}--}}
 <div id="app">
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container  col-md-12">
@@ -49,7 +49,7 @@
                             </a>
 
                             <ul class="dropdown-menu">
-                                <li><a href="{{ url('/admin/{id}') }}">个人信息</a></li>
+                                {{--<li><a href="{{ url('/admin/{id}') }}">个人信息</a></li>--}}
                                 <li>
                                     <a href="{{ route('admin.logout') }}"
                                        onclick="event.preventDefault();

@@ -22,7 +22,7 @@ mix.js('resources/assets/js/user.js', 'public/js')//
 
 //自动监控你的文件变化
 //npm run watch
-mix.browserSync('localhost/item/public');
+mix.browserSync('localhost/zhongao/public');
 
 //生产环境版本控制，清除缓存
 //npm run production

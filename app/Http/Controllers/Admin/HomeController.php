@@ -4,14 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Model\Admin;
-use App\Model\Score;
-use App\Model\User;
 use App\Model\CognitiveAbility;
 use App\Model\FallRisk;
 use App\Model\Nutrition;
 use App\Model\PsychoSpirit;
+use App\Model\Score;
 use App\Model\TorsoFunction;
 use App\Model\TrunkDisease;
+use App\Model\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -100,9 +100,18 @@ class HomeController extends Controller
         //
     }
 
+
     /**
+     * @param Request $request
      * @param Score $score
      * @param $id
+     * @param TrunkDisease $trunkDisease
+     * @param TorsoFunction $torsoFunction
+     * @param CognitiveAbility $cognitiveAbility
+     * @param PsychoSpirit $psychoSpirit
+     * @param FallRisk $fallRisk
+     * @param Nutrition $nutrition
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function query(
         Request $request,
@@ -127,7 +136,7 @@ class HomeController extends Controller
             'nutritions' => '营养问题',
             'trunk' => '躯干疾病问题'
         ];
-        return view('admin.detail', ['data' => $questions,'user_id' => $id]);
+        return view('admin.detail', ['data' => $questions, 'user_id' => $id]);
 //            ->with('data', $data)
 //            ->with('trunkDisease', $trunkDisease->pluck('questions','id'))
 //            ->with('torsoFunction', $torsoFunction->pluck('questions','id'))
@@ -157,6 +166,13 @@ class HomeController extends Controller
         Nutrition $nutrition
     )
     {
-
+        switch ($type) {
+            case 'psycho':
+                {
+                    return view('admin.psycho')
+                        ->with('data', $psychoSpirit->pluck('questions','id'));
+                }
+                break;
+        }
     }
 }

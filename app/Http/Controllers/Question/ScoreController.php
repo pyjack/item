@@ -188,7 +188,7 @@ class ScoreController extends Controller
         $request->session()->put(session('user_id') . '_' . 'cga', session(session('user_id') . '_' . 'cga') + $cga);
 
         //更新用户信息表总分
-        $score_status = $score->where('id',$request->user_id)->where('trunk_disease_id','<>',null);
+        $score_status = $score->where('id',$request->user_id)->where('trunk_disease_id','<>',null)->first();
         $cga = session(session('user_id') . '_' . 'cga');
 
         if ($cga >= 0 && $cga <= 6) {

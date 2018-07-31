@@ -10,6 +10,7 @@
                         <form id="question_form" class="form-horizontal" method="POST" action="{{ route('trunk.submit') }}">
                             {{ csrf_field() }}
                             <input type="hidden" name="table" value="{{$table}}">
+                            <input type="hidden" name="user_id" value="{{ $id }}">
                             @foreach($questions as $value)
                                 <div class="post-content">
                                     <h2>

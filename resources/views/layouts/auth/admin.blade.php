@@ -71,21 +71,21 @@
     </nav>
 
     @yield('content')
-    <footer class="footer" id="footer">
-        <div class="container text-center">
-            <div class="row footer-bottom">
-                <ul class="list-inline ">
-                    <li>
-                        <p>© {{date('Y')}}
-                            <a target="_blank" href="http://www.haohanet.com">
-                                浩瀚科技
-                            </a>提供技术支持
-                        </p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </footer>
+    {{--<footer class="footer" id="footer">--}}
+        {{--<div class="container text-center">--}}
+            {{--<div class="row footer-bottom">--}}
+                {{--<ul class="list-inline ">--}}
+                    {{--<li>--}}
+                        {{--<p>© {{date('Y')}}--}}
+                            {{--<a target="_blank" href="http://www.haohanet.com">--}}
+                                {{--浩瀚科技--}}
+                            {{--</a>提供技术支持--}}
+                        {{--</p>--}}
+                    {{--</li>--}}
+                {{--</ul>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</footer>--}}
 </div>
 
 <!-- Scripts -->

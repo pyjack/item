@@ -41,16 +41,16 @@
                                 用户ID
                             </th>
                             <th class="text-center">
-                                电话
+                                姓名
                             </th>
                             <th class="text-center">
-                                姓名
+                                电话
                             </th>
                             <th class="text-center">
                                 性别
                             </th>
                             <th class="text-center">
-                                GPA
+                                CGA
                             </th>
                             <th class="text-center">
                                 等级

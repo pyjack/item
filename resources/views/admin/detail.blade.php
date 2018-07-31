@@ -10,6 +10,20 @@
                             <thead class="">
                             <tr class="text-center">
                                 <th class="text-center">
+                                    姓名；{{ $user->username }}
+                                </th>
+                                <th class="text-center">
+                                    年龄：{{ $user->age }}
+                                </th>
+                                <th class="text-center">
+                                    性别：{{ $user->gender == 0 ? '男' : '女' }}
+                                </th>
+                                <th class="text-center">
+                                    操作人：{{ $admin }}
+                                </th>
+                            </tr>
+                            <tr class="text-center">
+                                <th class="text-center">
                                     选择
                                 </th>
                                 <th class="text-center">
@@ -30,14 +44,18 @@
                                         <input type="checkbox">
                                     </td>
                                     <td>
-                                        {{ $value }}
+                                        {{ $key }}
                                     </td>
                                     <td>
-
+                                        {{ isset($value) ? $value : '' }}
                                     </td>
                                     <td colspan="2">
-                                        <a href="#"> 填写 </a>
-                                        <a href="{{ route('user.detail.scores',[$user_id, $key]) }}"> 详情 </a>
+                                        {{--{{dd($value)}}--}}
+                                        @if(isset($value))
+                                            <a href="{{ route('user.detail.scores',[$user_id, $key]) }}"> 详情 </a>
+                                        @else
+                                            <a href="{{ route('user.detail.scores',[$user_id, $key]) }}"> 填写 </a>
+                                        @endif
                                         <a href="#"> 打印预览 </a>
                                     </td>
                                 </tr>

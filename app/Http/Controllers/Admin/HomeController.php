@@ -113,37 +113,34 @@ class HomeController extends Controller
      * @param Nutrition $nutrition
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function query(
-        Request $request,
-        Score $score, $id,
-        trunkDisease $trunkDisease,
-        TorsoFunction $torsoFunction,
-        CognitiveAbility $cognitiveAbility,
-        PsychoSpirit $psychoSpirit,
-        FallRisk $fallRisk,
-        Nutrition $nutrition
-    )
+    public function query(Score $score, $id, User $user)
     {
-        $data = $score->where('user_id', $id)
-            ->where('psycho_spirit_id', '<>', null);
-//            ->lists('scores');
-//        dd($data);
+        $psycho = $score->where('user_id', $id)->where('psycho_spirit_id', '!=', null)->sum('scores');
+        $nutrition = $score->where('user_id', $id)->where('nutrition_id', '<>', null)->sum('scores');
+        $fall = $score->where('user_id', $id)->where('fall_risk_id', '<>', null)->sum('scores');
+        $cognitive = $score->where('user_id', $id)->where('cognitive_ability_id', '<>', null)->sum('scores');
+        $torso = $score->where('user_id', $id)->where('torso_function_id', '<>', null)->sum('scores');
+        $trunk = $score->where('user_id', $id)->where('trunk_disease_id', '<>', null)->sum('scores');
+
         $questions = [
-            'psycho' => '心理精神问题',
-            'torso' => '躯干功能问题',
-            'cognitive' => '认知能力问题',
-            'fall' => '跌倒风险问题',
-            'nutritions' => '营养问题',
-            'trunk' => '躯干疾病问题'
+            '心理精神问题' => $psycho,
+            '躯干功能问题' => $torso,
+            '认知能力问题' => $cognitive,
+            '跌倒风险问题' => $fall,
+            '营养问题' => $nutrition,
+            '躯干疾病问题' => $trunk
         ];
-        return view('admin.detail', ['data' => $questions, 'user_id' => $id]);
-//            ->with('data', $data)
-//            ->with('trunkDisease', $trunkDisease->pluck('questions','id'))
-//            ->with('torsoFunction', $torsoFunction->pluck('questions','id'))
-//            ->with('cognitiveAbility', $cognitiveAbility->pluck('questions','id'))
-//            ->with('fallRisk', $fallRisk->pluck('questions','id'))
-//            ->with('nutrition', $nutrition->pluck('questions','id'))
-//            ->with('psychoSpirit', $psychoSpirit->pluck('questions','id'))
+
+        $user = $user->where('id',$id)->first();
+        $admin = session('admin');
+
+        return view('admin.detail',
+            [
+            'data' => $questions,
+            'user_id' => $id,
+            'user' => $user,
+            'admin' => $admin
+        ]);
     }
 
 
@@ -159,20 +156,67 @@ class HomeController extends Controller
     public function detail(
         $id,
         $type,
+        Score $score,
         TorsoFunction $torsoFunction,
         CognitiveAbility $cognitiveAbility,
         PsychoSpirit $psychoSpirit,
         FallRisk $fallRisk,
-        Nutrition $nutrition
+        Nutrition $nutrition,
+        TrunkDisease $trunkDisease
     )
     {
         switch ($type) {
-            case 'psycho':
+            case '心理精神问题':
                 {
-                    return view('admin.psycho')
+                    return view('admin.scores')
                         ->with('data', $psychoSpirit->pluck('questions','id'));
                 }
                 break;
+            case '躯干功能问题':
+                {
+                    return view('admin.scores')
+                        ->with('data', $torsoFunction->pluck('questions','id'));
+                }
+                break;
+            case '认知能力问题':
+                {
+                    return view('admin.scores')
+                        ->with('data', $cognitiveAbility->pluck('questions','id'));
+                }
+                break;
+            case '跌倒风险问题':
+                {
+                    return view('admin.scores')
+                        ->with('data', $fallRisk->pluck('questions','id'));
+                }
+                break;
+            case '营养问题':
+                {
+                    return view('admin.scores')
+                        ->with('data', $nutrition->pluck('questions','id'));
+                }
+                break;
+            case '躯干疾病问题':
+                {
+                    $score = $score->where('user_id', $id)
+                        ->where('trunk_disease_id', '<>', null)
+                        ->where('scores', '<>', null)
+                        ->get();
+
+                    if(isset($score)){
+                        return view('admin.scores')
+                            ->with('data', $trunkDisease
+                                ->pluck('questions','id'));
+                    } else {
+                        return view('questions.trunk')
+                            ->with('questions', $trunkDisease->all())
+                            ->with('category', '躯干疾病问题')
+                            ->with('table','trunk_disease')
+                            ->with('id', $id);
+                    }
+                }
+                break;
         }
+        return view('404');
     }
 }
